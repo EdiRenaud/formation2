@@ -25,6 +25,7 @@ class CarServiceTest {
         //Act
         this.service.save(car1);
         this.service.save(car2);
+        this.service.save(car2);
 
         //Assert
         Assertions.assertEquals(2, this.service.getCars().size());
