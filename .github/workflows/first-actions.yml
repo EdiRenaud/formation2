@@ -1,0 +1,30 @@
+name: Demo #Nom workflow
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - develop
+    #paths-ignore:
+    #  - '.github/workflows/*'
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+
+jobs: #Commandes à exécuter
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code
+        uses: actions/checkout@v4
+      - name: Install java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'oracle'
+          java-version: '17'
+          cache: maven
+      - name: Build Code
+        run: mvn compile
+      - name: Execute test
+        run: mvn test
